@@ -52,6 +52,7 @@ FULL_PATH="$BASE/$ROOT"
 
 OCR="container-registry.oracle.com/olcne"
 
+podman pull "${BASE_IMAGE}"
 podman save "${BASE_IMAGE}" > "$ARCHIVES/base.tar"
 
 # When podman/cri-o store container images on-disk, the layer database points to
