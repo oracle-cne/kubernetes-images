@@ -93,7 +93,7 @@ podman pull --root="${ROOT}" $OCR/flannel:${FLANNEL}
 podman pull --root="${ROOT}" $OCR/ui:${UI}
 podman pull --root="${ROOT}" $OCR/ui-plugins:${UI_PLUGINS}
 podman pull --root="${ROOT}" $OCR/ocne-catalog:${CATALOG}
-podman pull --root="${ROOT}" $OCR/nginx:$NGINX}
+podman pull --root="${ROOT}" $OCR/nginx:${NGINX}
 
 podman tag --root="${ROOT}" $OCR/nginx:${NGINX} $OCR/nginx:${NGINX}-orig
 podman rmi --root="${ROOT}" $OCR/nginx:${NGINX}
