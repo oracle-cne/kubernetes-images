@@ -1,10 +1,13 @@
 @Library('olcne-pipeline') _
 import com.oracle.olcne.pipeline.BranchPattern
 
-String version = 
+String version =
 
 olcnePipeline(
         branchPattern: new BranchPattern(master: "oracle/release/" + version, feature: '(?!^release/.*$)(^.*$)'),
         platforms: ['ol8'],
         architectures: ['x86_64', 'aarch64'],
+	preBuildCommands: [
+		'export QA_RPATHS=1',
+	],
 )

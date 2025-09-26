@@ -11,13 +11,13 @@ AutoReqProv: no
 %endif
 
 # Image tags + kubernetes version
-%global majorminor              
-%global patch                   
+%global majorminor
+%global patch
 %global pause
 %global etcd
 %global coredns
 %global flannel
-%global ui
+%global ui_tag
 %global ui_plugins
 %global catalog
 %global nginx
@@ -27,7 +27,7 @@ AutoReqProv: no
 %global app_name                kubernetes-imgs
 %global app_version             %{majorminor}.%{patch}
 %global oracle_release_version  1
-%global kubernetes_version      %{majorminor}.%{patch}
+%global kubernetes_version      v%{majorminor}.%{patch}
 
 
 Name:           %{app_name}
@@ -54,8 +54,7 @@ rm -rf %{buildroot}
 mkdir -p %{buildroot}/archives
 install -d -m 0755 %{buildroot}/usr/ock/containers
 install -d -m 0755 %{buildroot}/etc/ocne/ock/patches
-./pull-images.sh v%{kubernetes_version} %{buildroot} /usr/ock/containers %{buildroot}/archives
-./pullimages.sh \
+./pull-images.sh \
 	--base "%{buildroot}" \
 	--root "/usr/ock/containers" \
 	--archive "%{buildroot}/archives" \
@@ -64,7 +63,7 @@ install -d -m 0755 %{buildroot}/etc/ocne/ock/patches
 	--etcd-tag "%{etcd}" \
 	--coredns-tag "%{coredns}" \
 	--flannel-tag "%{flannel}" \
-	--ui-tag "%{ui}" \
+	--ui-tag "%{ui_tag}" \
 	--plugins-tag "%{ui_plugins}" \
 	--catalog-tag "%{catalog}" \
 	--nginx-tag "%{nginx}" \
@@ -83,20 +82,5 @@ echo "Fixing file and directory ownership"
 find /usr/ock/containers -name headlamp | xargs chown -R 100:101
 
 %changelog
-* Mon Jul 21 2025 Daniel Krasinski <daniel.krasinski@oracle.com) - 1.31.11-2
-- Upgrad to 1.31.11
-
-* Tue Jul 15 2025 Daniel Krasinski <daniel.krasinski@oracle.com) - 1.31.9-2
-- Pull in latest images
-
-* Tue Jun 17 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.31.9-1
-- Upgrade to 1.31.9
-
-* Mon Apr 07 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.31.6-3
-- Use container images that leverage a common base image
-
-* Mon Feb 24 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.31.6-2
-- Pick up the latest container images
-
-* Sat Feb 22 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.31.6-1
-- Introduce Kubernetes 1.31.6
+* 
+- Kubernetes 
