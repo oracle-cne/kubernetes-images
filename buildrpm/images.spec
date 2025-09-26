@@ -17,7 +17,7 @@ AutoReqProv: no
 %global etcd 3.5.21-1
 %global coredns v1.12.2-1
 %global flannel v0.27.1
-%global ui v0.31.1
+%global ui_tag v0.31.1
 %global ui_plugins v2.0.0
 %global catalog v2.0.0
 %global nginx 1.24.0
@@ -63,7 +63,7 @@ install -d -m 0755 %{buildroot}/etc/ocne/ock/patches
 	--etcd-tag "%{etcd}" \
 	--coredns-tag "%{coredns}" \
 	--flannel-tag "%{flannel}" \
-	--ui-tag "%{ui}" \
+	--ui-tag "%{ui_tag}" \
 	--plugins-tag "%{ui_plugins}" \
 	--catalog-tag "%{catalog}" \
 	--nginx-tag "%{nginx}" \
