@@ -11,17 +11,17 @@ AutoReqProv: no
 %endif
 
 # Image tags + kubernetes version
-%global majorminor 1.32
-%global patch 7
-%global pause 3.10
-%global etcd 3.5.21-1
-%global coredns v1.12.2-1
-%global flannel v0.27.1
-%global ui_tag v0.31.1
-%global ui_plugins v2.0.0
-%global catalog v2.0.0
-%global nginx 1.24.0
-%global base container-registry.oracle.com/olcne/base:latest
+%global majorminor
+%global patch
+%global pause
+%global etcd
+%global coredns
+%global flannel
+%global ui_tag
+%global ui_plugins
+%global catalog
+%global nginx
+%global base
 
 %global _buildhost              build-ol%{?oraclelinux}-%{?_arch}.oracle.com
 %global app_name                kubernetes-imgs
@@ -82,5 +82,5 @@ echo "Fixing file and directory ownership"
 find /usr/ock/containers -name headlamp | xargs chown -R 100:101
 
 %changelog
-* Fri Sep 26 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.32.7-1
-- Kubernetes 1.32.7
+* 
+- Kubernetes 
