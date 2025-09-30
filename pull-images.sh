@@ -3,8 +3,7 @@
 # Copyright (c) 2024, Oracle and/or its affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
 
-#IMAGE=container-registry.oracle.com/os/oraclelinux:8
-IMAGE=$REGS
+IMAGE=container-registry.oracle.com/os/oraclelinux:8
 KUBE=
 PAUSE=
 ETCD=
@@ -78,14 +77,15 @@ printf "FROM $OCR/nginx:${NGINX}-orig\nWORKDIR /etc/nginx\n" > Dockerfile.nginx
 podman pull --root="${ROOT}" "${BASE_IMAGE}"
 podman tag --root="${ROOT}" "${BASE_IMAGE}" "container-registry.oracle.com/os/oraclelinux:8"
 podman rmi --root="${ROOT}" "${BASE_IMAGE}"
-podman pull --root="${ROOT}" $OCR/kube-apiserver:${KUBE}
-podman pull --root="${ROOT}" $OCR/kube-proxy:${KUBE}
-podman pull --root="${ROOT}" $OCR/kube-controller-manager:${KUBE}
-podman pull --root="${ROOT}" $OCR/kube-scheduler:${KUBE}
+
+podman pull --root="${ROOT}" $REGS/kube-apiserver:${KUBE}
+podman pull --root="${ROOT}" $REGS/kube-proxy:${KUBE}
+podman pull --root="${ROOT}" $REGS/kube-controller-manager:${KUBE}
+podman pull --root="${ROOT}" $REGS/kube-scheduler:${KUBE}
 podman pull --root="${ROOT}" $OCR/pause:${PAUSE}
-podman pull --root="${ROOT}" $OCR/etcd:${ETCD}
-podman pull --root="${ROOT}" $OCR/coredns:${COREDNS}
-podman pull --root="${ROOT}" $OCR/flannel:${FLANNEL}
+podman pull --root="${ROOT}" $REGS/etcd:${ETCD}
+podman pull --root="${ROOT}" $REGS/coredns:${COREDNS}
+podman pull --root="${ROOT}" $REGS/flannel:${FLANNEL}
 podman pull --root="${ROOT}" $OCR/ui:${UI}
 podman pull --root="${ROOT}" $OCR/ui-plugins:${UI_PLUGINS}
 podman pull --root="${ROOT}" $OCR/ocne-catalog:${CATALOG}
