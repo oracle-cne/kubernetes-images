@@ -86,15 +86,20 @@ podman pull --root="${ROOT}" $OCR/pause:${PAUSE}
 podman pull --root="${ROOT}" $REGS/etcd:${ETCD}
 podman pull --root="${ROOT}" $REGS/coredns:${COREDNS}
 podman pull --root="${ROOT}" $REGS/flannel:${FLANNEL}
-podman pull --root="${ROOT}" $OCR/ui:${UI}
-podman pull --root="${ROOT}" $OCR/ui-plugins:${UI_PLUGINS}
-podman pull --root="${ROOT}" $OCR/ocne-catalog:${CATALOG}
+podman pull --root="${ROOT}" $REGS/ui:${UI}
+podman pull --root="${ROOT}" $REGS/ui-plugins:${UI_PLUGINS}
+podman pull --root="${ROOT}" $REGS/ocne-catalog:${CATALOG}
 podman pull --root="${ROOT}" $OCR/nginx:${NGINX}
 
 podman tag --root="${ROOT}" $OCR/nginx:${NGINX} $OCR/nginx:${NGINX}-orig
 podman rmi --root="${ROOT}" $OCR/nginx:${NGINX}
 podman build --root="${ROOT}" --squash-all --pull=never --tag $OCR/nginx:${NGINX} --file Dockerfile.nginx .
 podman rmi --root="${ROOT}" $OCR/nginx:${NGINX}-orig
+
+podman tag --root="${ROOT}" ${REGS}/kube-proxy:${KUBE} ${OCR}/kube-proxy:${KUBE}
+podman tag --root="${ROOT}" ${REGS}/coredns:${COREDNS} ${OCR}/coredns:${COREDNS}
+podman tag --root="${ROOT}" $REGS/ui:${UI} $OCR/ui:${UI}
+podman tag --root="${ROOT}" $REGS/flannel:${FLANNEL} $OCR/flannel:${FLANNEL} 
 
 podman tag --root="${ROOT}" ${OCR}/kube-proxy:${KUBE} ${OCR}/kube-proxy:current
 podman tag --root="${ROOT}" ${OCR}/coredns:${COREDNS} ${OCR}/coredns:current
