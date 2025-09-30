@@ -11,17 +11,17 @@ AutoReqProv: no
 %endif
 
 # Image tags + kubernetes version
-%global majorminor
-%global patch
-%global pause
-%global etcd
-%global coredns
-%global flannel
-%global ui_tag
-%global ui_plugins
-%global catalog
-%global nginx
-%global base
+%global majorminor 1.32
+%global patch 9
+%global pause 3.10
+%global etcd 3.5.23
+%global coredns v1.12.4
+%global flannel v0.27.3
+%global ui_tag v0.35.0
+%global ui_plugins v2.0.0
+%global catalog v2.0.0
+%global nginx 1.24.0
+%global base container-registry.oracle.com/olcne/base:latest
 
 %global _buildhost              build-ol%{?oraclelinux}-%{?_arch}.oracle.com
 %global app_name                kubernetes-imgs
@@ -82,5 +82,24 @@ echo "Fixing file and directory ownership"
 find /usr/ock/containers -name headlamp | xargs chown -R 100:101
 
 %changelog
-* 
-- Kubernetes 
+* Tue Sep 30 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.32.9-1
+- Kubernetes 1.32.9
+
+* Mon Jul 21 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.32.7-1
+- Upgrad to Kubernetes 1.32.7
+
+* Mon Jun 16 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.32.5-2
+- Rebuild with latest container images
+
+* Mon Jun 16 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.32.5-1
+- Upgrade to Kubernetes 1.32.5
+
+* Mon Apr 07 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.31.6-3
+- Use container images that leverage a common base image
+
+* Mon Feb 24 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.31.6-2
+- Pick up the latest container images
+
+* Sat Feb 22 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.31.6-1
+- Introduce Kubernetes 1.31.6
+
