@@ -79,5 +79,5 @@ echo "Fixing file and directory ownership"
 find /usr/ock/containers -name headlamp | xargs chown -R 100:101
 
 %changelog
-* 
-- Kubernetes 
+* Tue Sep 30 2025 Thomas Tanaka <thomas.tanaka@oracle.com> - 1.33.5-1
+- Kubernetes 1.33.5
