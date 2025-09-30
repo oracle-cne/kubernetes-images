@@ -3,8 +3,8 @@
 # Copyright (c) 2024, Oracle and/or its affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
 
-IMAGE=container-registry.oracle.com/os/oraclelinux:8
-echo $REGS
+#IMAGE=container-registry.oracle.com/os/oraclelinux:8
+IMAGE=$REGS
 KUBE=
 PAUSE=
 ETCD=
