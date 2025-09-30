@@ -50,6 +50,7 @@ images makes startup faster and removes the requirement to have access to a cont
 %setup -q -n %{name}-%{version}
 
 %install
+env
 rm -rf %{buildroot}
 install -d -m 0755 %{buildroot}/usr/ock/containers
 install -d -m 0755 %{buildroot}/etc/ocne/ock/patches
@@ -69,8 +70,6 @@ install -d -m 0755 %{buildroot}/etc/ocne/ock/patches
 
 ./fix-images.sh %{buildroot}
 mv %{buildroot}/usr/ock/patches/* %{buildroot}/etc/ocne/ock/patches/
-
-env
 
 %files
 /usr/ock
