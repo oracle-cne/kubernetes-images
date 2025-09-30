@@ -10,6 +10,18 @@ AutoReqProv: no
 %global debug_package %{nil}
 %endif
 
+# Image tags + kubernetes version
+%global majorminor 1.33
+%global patch 5
+%global pause 3.10
+%global etcd 3.5.23
+%global coredns v1.13.1
+%global flannel v0.27.3
+%global ui_tag v0.35.0
+%global ui_plugins v2.0.0
+%global catalog v2.0.0
+%global nginx 1.24.0
+%global base container-registry.oracle.com/olcne/base:latest
 
 %global _buildhost              build-ol%{?oraclelinux}-%{?_arch}.oracle.com
 %global app_name                kubernetes-imgs
