@@ -50,8 +50,6 @@ images makes startup faster and removes the requirement to have access to a cont
 %setup -q -n %{name}-%{version}
 
 %install
-#export REGS=%{registry_url}
-export REGS=container-registry.oracle.com/olcne
 rm -rf %{buildroot}
 install -d -m 0755 %{buildroot}/usr/ock/containers
 install -d -m 0755 %{buildroot}/etc/ocne/ock/patches

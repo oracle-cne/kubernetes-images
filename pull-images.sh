@@ -1,9 +1,10 @@
-#! /bin/bash -x
+#! /bin/bash
 
 # Copyright (c) 2024, Oracle and/or its affiliates.
 # Licensed under the Universal Permissive License v 1.0 as shown at https://oss.oracle.com/licenses/upl.
 
 IMAGE=container-registry.oracle.com/os/oraclelinux:8
+
 KUBE=
 PAUSE=
 ETCD=
@@ -77,29 +78,23 @@ printf "FROM $OCR/nginx:${NGINX}-orig\nWORKDIR /etc/nginx\n" > Dockerfile.nginx
 podman pull --root="${ROOT}" "${BASE_IMAGE}"
 podman tag --root="${ROOT}" "${BASE_IMAGE}" "container-registry.oracle.com/os/oraclelinux:8"
 podman rmi --root="${ROOT}" "${BASE_IMAGE}"
-
-podman pull --root="${ROOT}" $REGS/kube-apiserver:${KUBE}
-podman pull --root="${ROOT}" $REGS/kube-proxy:${KUBE}
-podman pull --root="${ROOT}" $REGS/kube-controller-manager:${KUBE}
-podman pull --root="${ROOT}" $REGS/kube-scheduler:${KUBE}
+podman pull --root="${ROOT}" $OCR/kube-apiserver:${KUBE}
+podman pull --root="${ROOT}" $OCR/kube-proxy:${KUBE}
+podman pull --root="${ROOT}" $OCR/kube-controller-manager:${KUBE}
+podman pull --root="${ROOT}" $OCR/kube-scheduler:${KUBE}
 podman pull --root="${ROOT}" $OCR/pause:${PAUSE}
-podman pull --root="${ROOT}" $REGS/etcd:${ETCD}
-podman pull --root="${ROOT}" $REGS/coredns:${COREDNS}
-podman pull --root="${ROOT}" $REGS/flannel:${FLANNEL}
-podman pull --root="${ROOT}" $REGS/ui:${UI}
-podman pull --root="${ROOT}" $REGS/ui-plugins:${UI_PLUGINS}
-podman pull --root="${ROOT}" $REGS/ocne-catalog:${CATALOG}
+podman pull --root="${ROOT}" $OCR/etcd:${ETCD}
+podman pull --root="${ROOT}" $OCR/coredns:${COREDNS}
+podman pull --root="${ROOT}" $OCR/flannel:${FLANNEL}
+podman pull --root="${ROOT}" $OCR/ui:${UI}
+podman pull --root="${ROOT}" $OCR/ui-plugins:${UI_PLUGINS}
+podman pull --root="${ROOT}" $OCR/ocne-catalog:${CATALOG}
 podman pull --root="${ROOT}" $OCR/nginx:${NGINX}
 
 podman tag --root="${ROOT}" $OCR/nginx:${NGINX} $OCR/nginx:${NGINX}-orig
 podman rmi --root="${ROOT}" $OCR/nginx:${NGINX}
 podman build --root="${ROOT}" --squash-all --pull=never --tag $OCR/nginx:${NGINX} --file Dockerfile.nginx .
 podman rmi --root="${ROOT}" $OCR/nginx:${NGINX}-orig
-
-podman tag --root="${ROOT}" ${REGS}/kube-proxy:${KUBE} ${OCR}/kube-proxy:${KUBE}
-podman tag --root="${ROOT}" ${REGS}/coredns:${COREDNS} ${OCR}/coredns:${COREDNS}
-podman tag --root="${ROOT}" $REGS/ui:${UI} $OCR/ui:${UI}
-podman tag --root="${ROOT}" $REGS/flannel:${FLANNEL} $OCR/flannel:${FLANNEL} 
 
 podman tag --root="${ROOT}" ${OCR}/kube-proxy:${KUBE} ${OCR}/kube-proxy:current
 podman tag --root="${ROOT}" ${OCR}/coredns:${COREDNS} ${OCR}/coredns:current
