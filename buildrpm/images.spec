@@ -15,7 +15,7 @@ AutoReqProv: no
 %global patch 9
 %global pause 3.10
 %global etcd 3.5.23
-%global coredns v1.12.4
+%global coredns v1.13.1
 %global flannel v0.27.3
 %global ui_tag v0.35.0
 %global ui_plugins v2.0.0
