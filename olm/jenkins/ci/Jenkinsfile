@@ -3,10 +3,35 @@ import com.oracle.olcne.pipeline.BranchPattern
 
 String version = "1.32"
 
+String patch = "9"
+String pause = "3.10"
+String etcd = "3.5.23"
+String coredns = "v1.13.1"
+String flannel = "v0.27.3"
+String ui_tag = "v0.35.0"
+String ui_plugins = "v2.0.0"
+String catalog = "v2.0.0"
+String nginx = "1.26.3"
+String base = "container-registry.oracle.com/olcne/base:latest"
+
+
 olcnePipeline(
         branchPattern: new BranchPattern(master: "oracle/release/" + version, feature: '(?!^release/.*$)(^.*$)'),
         platforms: ['ol8'],
         architectures: ['x86_64', 'aarch64'],
+        macros: [
+	    "majorminor": version,
+	    "patch": patch,
+	    "pause": pause,
+	    "etcd": etcd,
+	    "coredns": coredns,
+	    "flannel": flannel,
+	    "ui_tag": ui_tag,
+	    "ui_plugins: ui_plugins,
+	    "catalog": catalog,
+	    "nginx": nginx,
+	    "base": base,
+	],
 	preBuildCommands: [
 		'export QA_RPATHS=1',
 	],
