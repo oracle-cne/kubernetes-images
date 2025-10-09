@@ -32,7 +32,7 @@ def imgMacros = [
 def containerDeps = [
     "${reg}/kube-apiserver:v${version}.${patch}",
     "${reg}/pause:${pause}",
-    "${reg}/etcd": etcd}",
+    "${reg}/etcd:${etcd}",
     "${reg}/coredns:${coredns}",
     "${reg}/flannel:${flannel}",
     "${reg}/ui:${ui_tag}",
