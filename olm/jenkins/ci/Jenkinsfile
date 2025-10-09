@@ -39,7 +39,7 @@ def containerDeps = [
     "${reg}/ui-plugins:${ui_plugins}",
     "${reg}/ocne-catalog:${catalog}",
     "${reg}/nginx:${nginx}",
-    "${reg}/base:${base}",
+    base
 ]
 
 olcnePipeline(
