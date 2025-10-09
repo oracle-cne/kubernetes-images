@@ -1,6 +1,7 @@
 @Library('olcne-pipeline') _
 import com.oracle.olcne.pipeline.BranchPattern
 
+String reg = "container-registry.oracle.com/olcne"
 String version = "1.32"
 
 String patch = "9"
@@ -14,24 +15,28 @@ String catalog = "v2.0.0"
 String nginx = "1.26.3"
 String base = "container-registry.oracle.com/olcne/base:latest"
 
+def imgMacros = [
+    "majorminor": version,
+    "patch": patch,
+    "pause": pause,
+    "etcd": etcd,
+    "coredns": coredns,
+    "flannel": flannel,
+    "ui_tag": ui_tag,
+    "ui_plugins": ui_plugins,
+    "catalog": catalog,
+    "nginx": nginx,
+    "base": base,
+]
 
 olcnePipeline(
         branchPattern: new BranchPattern(master: "oracle/release/" + version, feature: '(?!^release/.*$)(^.*$)'),
         platforms: ['ol8'],
         architectures: ['x86_64', 'aarch64'],
-        macros: [
-	    "majorminor": version,
-	    "patch": patch,
-	    "pause": pause,
-	    "etcd": etcd,
-	    "coredns": coredns,
-	    "flannel": flannel,
-	    "ui_tag": ui_tag,
-	    "ui_plugins": ui_plugins,
-	    "catalog": catalog,
-	    "nginx": nginx,
-	    "base": base,
-	],
+        "macros": imgMacros,
+        dependencies: [
+                containers: imgMacros.collect({ img, tag -> "${reg}/${img}:${tag}"}),
+        ],
 	preBuildCommands: [
 		'export QA_RPATHS=1',
 	],
