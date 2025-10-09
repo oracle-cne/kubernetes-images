@@ -27,7 +27,7 @@ olcnePipeline(
 	    "coredns": coredns,
 	    "flannel": flannel,
 	    "ui_tag": ui_tag,
-	    "ui_plugins: ui_plugins,
+	    "ui_plugins": ui_plugins,
 	    "catalog": catalog,
 	    "nginx": nginx,
 	    "base": base,
