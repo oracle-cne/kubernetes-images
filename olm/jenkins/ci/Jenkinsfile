@@ -13,7 +13,7 @@ String ui_tag = "v0.35.0"
 String ui_plugins = "v2.0.0"
 String catalog = "v2.0.0"
 String nginx = "1.26.3"
-String base = "container-registry.oracle.com/olcne/base:latest"
+String base = "container-registry.oracle.com/olcne/ock:base-image"
 
 def imgMacros = [
     "majorminor": version,
