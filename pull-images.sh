@@ -31,7 +31,6 @@ while true; do
 	--base-image ) BASE_IMAGE="$2"; shift; shift ;;
 	--base ) BASE="$2"; shift; shift ;;
 	--root ) ROOT="$2"; shift; shift ;;
-	--archive ) ARCHIVES="$2"; shift; shift ;;
 	*) exit 1;;
 	esac
 done
@@ -52,9 +51,6 @@ FULL_PATH="$BASE/$ROOT"
 
 OCR="container-registry.oracle.com/olcne"
 
-podman pull "${BASE_IMAGE}"
-podman save "${BASE_IMAGE}" > "$ARCHIVES/base.tar"
-
 # When podman/cri-o store container images on-disk, the layer database points to
 # absolute paths rather than relative ones.  As a consequence, any pulls to a
 # path must actually be pulled to that path.  This is why the pulls are done in
@@ -70,7 +66,7 @@ podman save "${BASE_IMAGE}" > "$ARCHIVES/base.tar"
 # squashed so that it has a unique SHA that is never available in a container
 # registry.
 
-podman run --privileged --security-opt label=disable --rm -i -v /etc/containers:/etc/containers-host -v "$FULL_PATH:$ROOT" -v "$ARCHIVES:/archives" "$IMAGE" sh << EOF
+podman run --privileged --security-opt label=disable --rm -i -v /etc/containers:/etc/containers-host -v "$FULL_PATH:$ROOT" "$IMAGE" sh << EOF
 set -e
 set -x
 dnf install -y podman
@@ -79,7 +75,7 @@ cp /etc/containers-host/registries.conf.d/* /etc/containers/registries.conf.d/
 
 printf "FROM $OCR/nginx:${NGINX}-orig\nWORKDIR /etc/nginx\n" > Dockerfile.nginx
 
-podman load --root="${ROOT}" < "/archives/base.tar"
+podman pull --root="${ROOT}" "${BASE_IMAGE}"
 podman tag --root="${ROOT}" "${BASE_IMAGE}" "container-registry.oracle.com/os/oraclelinux:8"
 podman rmi --root="${ROOT}" "${BASE_IMAGE}"
 podman pull --root="${ROOT}" $OCR/kube-apiserver:${KUBE}
