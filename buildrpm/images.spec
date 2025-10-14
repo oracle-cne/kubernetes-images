@@ -10,18 +10,6 @@ AutoReqProv: no
 %global debug_package %{nil}
 %endif
 
-# Image tags + kubernetes version
-%global majorminor
-%global patch
-%global pause
-%global etcd
-%global coredns
-%global flannel
-%global ui_tag
-%global ui_plugins
-%global catalog
-%global nginx
-%global base
 
 %global _buildhost              build-ol%{?oraclelinux}-%{?_arch}.oracle.com
 %global app_name                kubernetes-imgs
@@ -51,13 +39,11 @@ images makes startup faster and removes the requirement to have access to a cont
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/archives
 install -d -m 0755 %{buildroot}/usr/ock/containers
 install -d -m 0755 %{buildroot}/etc/ocne/ock/patches
 ./pull-images.sh \
 	--base "%{buildroot}" \
 	--root "/usr/ock/containers" \
-	--archive "%{buildroot}/archives" \
 	--kube-tag "%{kubernetes_version}" \
 	--pause-tag "%{pause}" \
 	--etcd-tag "%{etcd}" \
@@ -70,7 +56,6 @@ install -d -m 0755 %{buildroot}/etc/ocne/ock/patches
 	--base-image "%{base}"
 
 ./fix-images.sh %{buildroot}
-rm -rf %{buildroot}/archives
 mv %{buildroot}/usr/ock/patches/* %{buildroot}/etc/ocne/ock/patches/
 
 %files
