@@ -1,12 +1,55 @@
 @Library('olcne-pipeline') _
 import com.oracle.olcne.pipeline.BranchPattern
 
-String version =
+String reg = "container-registry.oracle.com/olcne"
+String version = ""
+String patch = ""
+
+String pause = ""
+String etcd = ""
+String coredns = ""
+String flannel = ""
+String ui_tag = ""
+String ui_plugins = ""
+String catalog = ""
+String nginx = ""
+String base = "container-registry.oracle.com/olcne/ock:base-image"
+
+def imgMacros = [
+    "majorminor": version,
+    "patch": patch,
+    "pause": pause,
+    "etcd": etcd,
+    "coredns": coredns,
+    "flannel": flannel,
+    "ui_tag": ui_tag,
+    "ui_plugins": ui_plugins,
+    "catalog": catalog,
+    "nginx": nginx,
+    "base": base,
+]
+
+def containerDeps = [
+    "${reg}/kube-apiserver:v${version}.${patch}",
+    "${reg}/pause:${pause}",
+    "${reg}/etcd:${etcd}",
+    "${reg}/coredns:${coredns}",
+    "${reg}/flannel:${flannel}",
+    "${reg}/ui:${ui_tag}",
+    "${reg}/ui-plugins:${ui_plugins}",
+    "${reg}/ocne-catalog:${catalog}",
+    "${reg}/nginx:${nginx}",
+    base
+]
 
 olcnePipeline(
-        branchPattern: new BranchPattern(master: "oracle/release/" + version, feature: '(?!^release/.*$)(^.*$)'),
+        branchPattern: new BranchPattern(master: "release/" + version, feature: '(?!^release/.*$)(^.*$)'),
         platforms: ['ol8'],
         architectures: ['x86_64', 'aarch64'],
+        "macros": imgMacros,
+        dependencies: [
+                containers: containerDeps,
+        ],
 	preBuildCommands: [
 		'export QA_RPATHS=1',
 	],
