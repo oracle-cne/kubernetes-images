@@ -43,7 +43,7 @@ def containerDeps = [
 ]
 
 olcnePipeline(
-        branchPattern: new BranchPattern(master: "oracle/release/" + version, feature: '(?!^release/.*$)(^.*$)'),
+        branchPattern: new BranchPattern(master: "release/" + version, feature: '(?!^release/.*$)(^.*$)'),
         platforms: ['ol8'],
         architectures: ['x86_64', 'aarch64'],
         "macros": imgMacros,
