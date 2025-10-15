@@ -50,7 +50,7 @@ for shortImg in $imgs; do
 		min=$(echo "$TAG" | cut -d. -f 2)
 		pat=$(echo "$TAG" | cut -d. -f 3 | grep -o '^[0-9]*')
 		suffix=$(echo "$TAG" | cut -d. -f 3 | grep -o -e '-[0-9]*$')
-		echo "String verion = \"${maj}.${min}\""
+		echo "String version = \"${maj}.${min}\""
 		echo "String patch = \"${pat}\""
 		echo
 		continue
