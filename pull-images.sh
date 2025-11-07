@@ -76,7 +76,7 @@ cp /etc/containers-host/registries.conf.d/* /etc/containers/registries.conf.d/
 printf "FROM $OCR/nginx:${NGINX}-orig\nWORKDIR /etc/nginx\n" > Dockerfile.nginx
 
 podman pull --root="${ROOT}" "${BASE_IMAGE}"
-podman tag --root="${ROOT}" "${BASE_IMAGE}" "container-registry.oracle.com/olcne/ock:base-image"
+podman tag --root="${ROOT}" "${BASE_IMAGE}" "container-registry.oracle.com/os/oraclelinux:8"
 podman rmi --root="${ROOT}" "${BASE_IMAGE}"
 podman pull --root="${ROOT}" $OCR/kube-apiserver:${KUBE}
 podman pull --root="${ROOT}" $OCR/kube-proxy:${KUBE}

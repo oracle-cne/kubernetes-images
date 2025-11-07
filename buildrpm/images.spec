@@ -21,7 +21,7 @@ AutoReqProv: no
 %global ui_plugins v2.0.0
 %global catalog v2.0.0
 %global nginx 1.26.3
-%global base container-registry.oracle.com/olcne/base:latest
+%global base container-registry.oracle.com/olcne/ock:base-image
 
 %global _buildhost              build-ol%{?oraclelinux}-%{?_arch}.oracle.com
 %global app_name                kubernetes-imgs
