@@ -67,5 +67,24 @@ echo "Fixing file and directory ownership"
 find /usr/ock/containers -name headlamp | xargs chown -R 100:101
 
 %changelog
-* 
-- Kubernetes 
+* Tue Sep 30 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.32.9-1
+- Kubernetes 1.32.9
+
+* Mon Jul 21 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.32.7-1
+- Upgrad to Kubernetes 1.32.7
+
+* Mon Jun 16 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.32.5-2
+- Rebuild with latest container images
+
+* Mon Jun 16 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.32.5-1
+- Upgrade to Kubernetes 1.32.5
+
+* Mon Apr 07 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.31.6-3
+- Use container images that leverage a common base image
+
+* Mon Feb 24 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.31.6-2
+- Pick up the latest container images
+
+* Sat Feb 22 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.31.6-1
+- Introduce Kubernetes 1.31.6
+
