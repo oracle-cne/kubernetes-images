@@ -5,7 +5,7 @@ String reg = "container-registry.oracle.com/olcne"
 String version = "1.30"
 String patch = "14"
 
-String pause = "3.10"
+String pause = "3.9"
 String etcd = "3.5.23"
 String coredns = "v1.13.1"
 String flannel = "v0.27.3"
