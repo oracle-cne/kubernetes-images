@@ -12,11 +12,11 @@ AutoReqProv: no
 
 # Image tags + kubernetes version
 %global majorminor 1.33
-%global patch 5
+%global patch 7
 %global pause 3.10
-%global etcd 3.5.23
-%global coredns v1.13.1
-%global flannel v0.27.3
+%global etcd 3.5.24
+%global coredns v1.13.2
+%global flannel v0.27.4
 %global ui_tag v0.35.0
 %global ui_plugins v2.0.0
 %global catalog v2.0.0
@@ -79,5 +79,8 @@ echo "Fixing file and directory ownership"
 find /usr/ock/containers -name headlamp | xargs chown -R 100:101
 
 %changelog
+* Thu Dec 11 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.33.7-1
+- Kubernetes 1.33.7
+
 * Tue Sep 30 2025 Thomas Tanaka <thomas.tanaka@oracle.com> - 1.33.5-1
 - Kubernetes 1.33.5
