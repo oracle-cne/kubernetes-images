@@ -16,6 +16,11 @@ CATALOG=
 NGINX=
 BASE_IMAGE=
 
+K8S_LEGACY="v1.30.2"
+ETCD_LEGACY="3.5.12"
+COREDNS_LEGACY="v1.11.1"
+FLANNEL_LEGACY="v0.22.3-2"
+
 while true; do
 	case "$1" in
 	"") break;;
@@ -100,6 +105,14 @@ podman tag --root="${ROOT}" ${OCR}/kube-proxy:${KUBE} ${OCR}/kube-proxy:current
 podman tag --root="${ROOT}" ${OCR}/coredns:${COREDNS} ${OCR}/coredns:current
 podman tag --root="${ROOT}" $OCR/ui:${UI} $OCR/ui:current
 podman tag --root="${ROOT}" $OCR/flannel:${FLANNEL} $OCR/flannel:current
+
+podman tag --root="${ROOT}" container-registry.oracle.com/olcne/kube-apiserver:${VERSION} container-registry.oracle.com/olcne/kube-apiserver:${K8S_LEGACY}
+podman tag --root="${ROOT}" container-registry.oracle.com/olcne/kube-proxy:${VERSION} container-registry.oracle.com/olcne/kube-proxy:${K8S_LEGACY}
+podman tag --root="${ROOT}" container-registry.oracle.com/olcne/kube-controller-manager:${VERSION} container-registry.oracle.com/olcne/kube-controller-manager:${K8S_LEGACY}
+podman tag --root="${ROOT}" container-registry.oracle.com/olcne/kube-scheduler:${VERSION} container-registry.oracle.com/olcne/kube-scheduler:${K8S_LEGACY}
+podman tag --root="${ROOT}" container-registry.oracle.com/olcne/etcd:${ETCD} container-registry.oracle.com/olcne/etcd:${ETCD_LEGACY}
+podman tag --root="${ROOT}" container-registry.oracle.com/olcne/coredns:${COREDNS} container-registry.oracle.com/olcne/coredns:${COREDNS_LEGACY}
+podman tag --root="${ROOT}" container-registry.oracle.com/olcne/flannel:${FLANNEL} container-registry.oracle.com/olcne/flannel:${FLANNEL_LEGACY}
 EOF
 
 # Make a catalog of images so it's easy to tell which are encoded in this
