@@ -31,7 +31,6 @@ while true; do
 	--base-image ) BASE_IMAGE="$2"; shift; shift ;;
 	--base ) BASE="$2"; shift; shift ;;
 	--root ) ROOT="$2"; shift; shift ;;
-	--registry-auth-file ) REGISTRY_AUTH_FILE="$2"; shift; shift ;;
 	*) exit 1;;
 	esac
 done
