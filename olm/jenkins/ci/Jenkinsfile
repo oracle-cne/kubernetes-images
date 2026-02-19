@@ -1,4 +1,4 @@
-@Library('olcne-pipeline@feature/fixv4') _
+@Library('olcne-pipeline') _
 import com.oracle.olcne.pipeline.BranchPattern
 
 String reg = "container-registry.oracle.com/olcne"

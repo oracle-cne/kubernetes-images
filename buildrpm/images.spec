@@ -41,8 +41,6 @@ images makes startup faster and removes the requirement to have access to a cont
 rm -rf %{buildroot}
 install -d -m 0755 %{buildroot}/usr/ock/containers
 install -d -m 0755 %{buildroot}/etc/ocne/ock/patches
-ls -lrt /var/artifactory/creds
-echo $REGISTRY_AUTH_FILE
 ./pull-images.sh \
 	--base "%{buildroot}" \
 	--root "/usr/ock/containers" \
@@ -56,7 +54,6 @@ echo $REGISTRY_AUTH_FILE
 	--catalog-tag "%{catalog}" \
 	--nginx-tag "%{nginx}" \
 	--base-image "%{base}"
-#	--registry-auth-file "$REGISTRY_AUTH_FILE"
 
 ./fix-images.sh %{buildroot}
 mv %{buildroot}/usr/ock/patches/* %{buildroot}/etc/ocne/ock/patches/
