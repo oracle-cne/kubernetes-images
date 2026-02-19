@@ -55,7 +55,8 @@ echo $REGISTRY_AUTH_FILE
 	--plugins-tag "%{ui_plugins}" \
 	--catalog-tag "%{catalog}" \
 	--nginx-tag "%{nginx}" \
-	--base-image "%{base}"
+	--base-image "%{base}" \
+	--registry-auth-file "$REGISTRY_AUTH_FILE"
 
 ./fix-images.sh %{buildroot}
 mv %{buildroot}/usr/ock/patches/* %{buildroot}/etc/ocne/ock/patches/

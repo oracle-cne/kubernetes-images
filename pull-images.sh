@@ -31,6 +31,7 @@ while true; do
 	--base-image ) BASE_IMAGE="$2"; shift; shift ;;
 	--base ) BASE="$2"; shift; shift ;;
 	--root ) ROOT="$2"; shift; shift ;;
+	--registry-auth-file ) REGISTRY_AUTH_FILE="$2"; shift; shift ;;
 	*) exit 1;;
 	esac
 done
@@ -65,8 +66,8 @@ OCR="container-registry.oracle.com/olcne"
 # avoid that from happening, the nginx container image gets rebuilt and
 # squashed so that it has a unique SHA that is never available in a container
 # registry.
-
-podman run --privileged --security-opt label=disable --rm -i -v /etc/containers:/etc/containers-host -v "$FULL_PATH:$ROOT" "$IMAGE" sh << EOF
+echo $REGISTRY_AUTH_FILE
+podman run --authfile $REGISTRY_AUTH_FILE --privileged --security-opt label=disable --rm -i -v /etc/containers:/etc/containers-host -v "$FULL_PATH:$ROOT" "$IMAGE" sh << EOF
 set -e
 set -x
 dnf install -y podman
