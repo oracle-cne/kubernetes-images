@@ -75,7 +75,7 @@ cp /etc/containers-host/registries.conf.d/* /etc/containers/registries.conf.d/
 
 printf "FROM $OCR/nginx:${NGINX}-orig\nWORKDIR /etc/nginx\n" > Dockerfile.nginx
 
-#export REGISTRY_AUTH_FILE=$REGISTRY_AUTH_FILE
+export REGISTRY_AUTH_FILE=$REGISTRY_AUTH_FILE
 
 podman pull --root="${ROOT}" "${BASE_IMAGE}"
 podman tag --root="${ROOT}" "${BASE_IMAGE}" "container-registry.oracle.com/os/oraclelinux:8"
