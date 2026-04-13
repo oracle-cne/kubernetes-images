@@ -66,7 +66,7 @@ OCR="container-registry.oracle.com/olcne"
 # squashed so that it has a unique SHA that is never available in a container
 # registry.
 
-podman run --privileged --security-opt label=disable --rm -i -v /etc/containers:/etc/containers-host -v "$FULL_PATH:$ROOT" "$IMAGE" sh << EOF
+podman run --authfile $REGISTRY_AUTH_FILE --privileged --security-opt label=disable --rm -i -v $REGISTRY_AUTH_FILE:$REGISTRY_AUTH_FILE -v /etc/containers:/etc/containers-host -v "$FULL_PATH:$ROOT" "$IMAGE" sh << EOF
 set -e
 set -x
 dnf install -y podman
@@ -74,6 +74,8 @@ dnf install -y podman
 cp /etc/containers-host/registries.conf.d/* /etc/containers/registries.conf.d/
 
 printf "FROM $OCR/nginx:${NGINX}-orig\nWORKDIR /etc/nginx\n" > Dockerfile.nginx
+
+export REGISTRY_AUTH_FILE=$REGISTRY_AUTH_FILE
 
 podman pull --root="${ROOT}" "${BASE_IMAGE}"
 podman tag --root="${ROOT}" "${BASE_IMAGE}" "container-registry.oracle.com/os/oraclelinux:8"
