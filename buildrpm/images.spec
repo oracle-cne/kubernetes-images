@@ -14,8 +14,8 @@ AutoReqProv: no
 %global _buildhost              build-ol%{?oraclelinux}-%{?_arch}.oracle.com
 %global app_name                kubernetes-imgs
 %global app_version             %{majorminor}.%{patch}
-%global oracle_release_version  2
-%global kubernetes_version      v%{majorminor}.%{patch}-1
+%global oracle_release_version  3
+%global kubernetes_version      v%{majorminor}.%{patch}-2
 
 
 Name:           %{app_name}
@@ -67,6 +67,9 @@ echo "Fixing file and directory ownership"
 find /usr/ock/containers -name headlamp | xargs chown -R 100:101
 
 %changelog
+* Thu Apr 30 2026 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.30.14-3
+- Update to Kubernetes v1.30.14-2
+
 * Tue Oct 14 2025 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.30.14-2
 - Pull in latest container images
 
