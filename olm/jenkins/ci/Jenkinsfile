@@ -7,7 +7,7 @@ String patch = "5"
 
 String pause = "3.10"
 String etcd = "3.6.11"
-String coredns = "v1.24.3"
+String coredns = "v1.14.3"
 String flannel = "v0.28.1"
 String ui_tag = "v0.41.0"
 String ui_plugins = "v2.0.0"
