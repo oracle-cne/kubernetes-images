@@ -6,7 +6,7 @@ String version = "1.36"
 String patch = "1"
 
 String pause = "3.10"
-String etcd = ""
+String etcd = "3.6.11"
 String coredns = "v1.24.3"
 String flannel = "v0.28.1"
 String ui_tag = "v0.41.0"
