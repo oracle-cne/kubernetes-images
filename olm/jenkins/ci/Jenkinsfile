@@ -2,7 +2,7 @@
 import com.oracle.olcne.pipeline.BranchPattern
 
 String reg = "container-registry.oracle.com/olcne"
-String version = "1.25"
+String version = "1.35"
 String patch = "5"
 
 String pause = "3.10"
