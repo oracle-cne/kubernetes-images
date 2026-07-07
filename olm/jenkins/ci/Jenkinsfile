@@ -3,18 +3,15 @@ import com.oracle.olcne.pipeline.BranchPattern
 
 String reg = "container-registry.oracle.com/olcne"
 String version = "1.32"
-
-
 String patch = "13"
 String pause = "3.10"
-String etcd = "3.5.29"
-String coredns = "v1.14.2"
-String flannel = "v0.28.1"
-String ui_tag = "v0.41.0"
+String etcd = "3.5.32"
+String coredns = "v1.14.4"
+String flannel = "v0.28.6"
+String ui_tag = "v0.43.0"
 String ui_plugins = "v2.0.0"
 String catalog = "v2.0.0"
 String nginx = "1.26.3"
-
 String base = "container-registry.oracle.com/olcne/ock:base-image"
 
 def imgMacros = [
@@ -32,7 +29,7 @@ def imgMacros = [
 ]
 
 def containerDeps = [
-    "${reg}/kube-apiserver:v${version}.${patch}",
+    "${reg}/kube-apiserver:v${version}.${patch}-1",
     "${reg}/pause:${pause}",
     "${reg}/etcd:${etcd}",
     "${reg}/coredns:${coredns}",
