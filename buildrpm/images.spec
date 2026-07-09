@@ -14,8 +14,8 @@ AutoReqProv: no
 %global _buildhost              build-ol%{?oraclelinux}-%{?_arch}.oracle.com
 %global app_name                kubernetes-imgs
 %global app_version             %{majorminor}.%{patch}
-%global oracle_release_version  2
-%global kubernetes_version      v%{majorminor}.%{patch}
+%global oracle_release_version  3
+%global kubernetes_version      v%{majorminor}.%{patch}-1
 
 
 Name:           %{app_name}
@@ -67,6 +67,9 @@ echo "Fixing file and directory ownership"
 find /usr/ock/containers -name headlamp | xargs chown -R 100:101
 
 %changelog
+* Thu Jul 09 2026 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.32.13-3
+- Update container image tag with release field
+
 * Tue Jul 07 2026 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.32.13-2
 - Kubernetes 1.32.13
 
