@@ -67,5 +67,5 @@ echo "Fixing file and directory ownership"
 find /usr/ock/containers -name headlamp | xargs chown -R 100:101
 
 %changelog
-* Wed Aug 19 2026 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.35.7-1
-- Add Kubernetes 1.25.7
+* Wed Aug 19 2026 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.35.8-1
+- Add Kubernetes 1.25.8
