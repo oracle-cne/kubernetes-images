@@ -33,6 +33,9 @@ for shortImg in $imgs; do
 	if [ "$img" == "${REGISTRY}/kube-apiserver" ]; then
 		TAGS=$(echo "$TAGS" | grep "$KUBE_VERSION")
 	fi
+	if [ "$shortImg" == "ui" ]; then
+		TAGS=$(echo "$TAGS" | grep -vxF "v2.0.0")
+	fi
 	TAGS=$(echo "$TAGS" | sort -Vr)
 
 	TAG=$(echo "$TAGS" | head -1)
