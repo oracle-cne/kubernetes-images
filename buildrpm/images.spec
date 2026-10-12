@@ -58,6 +58,9 @@ install -d -m 0755 %{buildroot}/etc/ocne/ock/patches
 ./fix-images.sh %{buildroot}
 mv %{buildroot}/usr/ock/patches/* %{buildroot}/etc/ocne/ock/patches/
 
+%check
+bash ./check-images.sh "%{buildroot}"
+
 %files
 /usr/ock
 /etc/ocne/ock
