@@ -33,6 +33,19 @@ for shortImg in $imgs; do
 	if [ "$img" == "${REGISTRY}/kube-apiserver" ]; then
 		TAGS=$(echo "$TAGS" | grep "$KUBE_VERSION")
 	fi
+	if [ "$shortImg" == "etcd" ]; then
+		echo "Comparing Kubernetes $KUBE_VERSION with the etcd 3.5 cutoff 1.34 using version sort"
+		if [ "$(printf '%s\n' "$KUBE_VERSION" '1.34' | sort -V | head -1)" != '1.34' ]; then
+			echo "Kubernetes $KUBE_VERSION requires etcd 3.5; filtering published tags before version selection"
+			TAGS=$(echo "$TAGS" | grep -E '^3\.5\.[0-9]+(-[0-9]+)?$')
+			if [ -z "$TAGS" ]; then
+				echo "No published etcd 3.5 tag is available for Kubernetes $KUBE_VERSION; discovery failed" >&2
+				exit 1
+			fi
+		else
+			echo "Kubernetes $KUBE_VERSION does not require the etcd 3.5 filter; selecting from published tags"
+		fi
+	fi
 	if [ "$shortImg" == "ui" ]; then
 		TAGS=$(echo "$TAGS" | grep -vxF "v2.0.0")
 	fi
