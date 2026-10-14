@@ -58,6 +58,9 @@ install -d -m 0755 %{buildroot}/etc/ocne/ock/patches
 ./fix-images.sh %{buildroot}
 mv %{buildroot}/usr/ock/patches/* %{buildroot}/etc/ocne/ock/patches/
 
+%check
+bash ./check-images.sh "%{buildroot}"
+
 %files
 /usr/ock
 /etc/ocne/ock
@@ -67,5 +70,8 @@ echo "Fixing file and directory ownership"
 find /usr/ock/containers -name headlamp | xargs chown -R 100:101
 
 %changelog
+* Sat Oct 10 2026 Oracle Cloud Native Environment Authors <noreply@oracle.com> - 1.35.9-1
+- Update Kubernetes to 1.35.9 and refresh published image dependencies
+
 * Mon Aug 31 2026 Daniel Krasinski <daniel.krasinski@oracle.com> - 1.35.8-1
 - Add Kubernetes 1.25.8
