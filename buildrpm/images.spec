@@ -14,7 +14,7 @@ AutoReqProv: no
 %global _buildhost              build-ol%{?oraclelinux}-%{?_arch}.oracle.com
 %global app_name                kubernetes-imgs
 %global app_version             %{majorminor}.%{patch}
-%global oracle_release_version  1
+%global oracle_release_version  2
 %global kubernetes_version      v%{majorminor}.%{patch}
 
 
@@ -58,6 +58,9 @@ install -d -m 0755 %{buildroot}/etc/ocne/ock/patches
 ./fix-images.sh %{buildroot}
 mv %{buildroot}/usr/ock/patches/* %{buildroot}/etc/ocne/ock/patches/
 
+%check
+bash ./check-images.sh "%{buildroot}"
+
 %files
 /usr/ock
 /etc/ocne/ock
@@ -67,6 +70,9 @@ echo "Fixing file and directory ownership"
 find /usr/ock/containers -name headlamp | xargs chown -R 100:101
 
 %changelog
+* Mon Oct 12 2026 Oracle Cloud Native Environment Authors <noreply@oracle.com> - 1.33.13-2
+- Refresh image dependencies for Kubernetes 1.33.13
+
 * Tue Apr 14 2026 Oracle Cloud Native Environment Authors <noreply@oracle.com> - 1.33.10-1
 - Kubernetes 1.33.10
 
