@@ -5,9 +5,9 @@ String reg = "container-registry.oracle.com/olcne"
 String version = "1.33"
 String patch = "13"
 String pause = "3.10"
-String etcd = "3.5.34"
-String coredns = "v1.14.7"
-String flannel = "v0.28.10"
+String etcd = "3.5.36"
+String coredns = "v1.15.0"
+String flannel = "v0.28.11"
 String ui_tag = "v0.45.0"
 String ui_plugins = "v2.0.0"
 String catalog = "v2.0.0"
@@ -29,7 +29,7 @@ def imgMacros = [
 ]
 
 def containerDeps = [
-    "${reg}/kube-apiserver:v${version}.${patch}",
+    "${reg}/kube-apiserver:v${version}.${patch}-1",
     "${reg}/pause:${pause}",
     "${reg}/etcd:${etcd}",
     "${reg}/coredns:${coredns}",
