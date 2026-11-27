@@ -70,6 +70,9 @@ echo "Fixing file and directory ownership"
 find /usr/ock/containers -name headlamp | xargs chown -R 100:101
 
 %changelog
+* Wed Nov 25 2026 Oracle Cloud Native Environment Authors <noreply@oracle.com> - 1.34.13-1
+- Update Kubernetes to 1.34.13 and refresh published image dependencies
+
 * Sun Oct 11 2026 Oracle Cloud Native Environment Authors <noreply@oracle.com> - 1.34.12-1
 - Update Kubernetes images to 1.34.12
 
